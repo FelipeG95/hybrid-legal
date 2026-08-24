@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treino no Hybrid</title>
+<meta property="og:title" content="Um treino pra você no Hybrid">
+<meta property="og:description" content="Abre no app e a ficha entra na sua lista.">
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; font-family:-apple-system,Segoe UI,Roboto,sans-serif; background:#0A0E17; color:#F8F9FA;
+         min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card { width:100%; max-width:420px; }
+  .logo { font-size:44px; line-height:1; margin-bottom:12px; }
+  h1 { font-size:1.5rem; margin:0 0 4px; }
+  .sub { color:#8A94A0; font-size:.95rem; margin:0 0 24px; }
+  .dias { border:1px solid rgba(0,229,255,.22); border-radius:16px; padding:4px 16px; margin-bottom:24px; background:#111725; }
+  .dia { display:flex; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+  .dia:last-child { border-bottom:0; }
+  .dia b { font-weight:600; font-size:.95rem; }
+  .dia span { color:#8A94A0; font-size:.85rem; white-space:nowrap; }
+  a.btn { display:block; text-align:center; text-decoration:none; border-radius:16px; padding:16px; font-weight:600; margin-bottom:10px; }
+  .primario { background:#00E5FF; color:#04222A; }
+  .alt { border:1px solid rgba(0,229,255,.3); color:#00E5FF; }
+  .aviso { color:#8A94A0; font-size:.8rem; text-align:center; margin-top:18px; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">🐺</div>
+  <h1 id="nome">Um treino pra você</h1>
+  <p class="sub" id="resumo">Abrindo no Hybrid…</p>
+  <div class="dias" id="dias" hidden></div>
+  <a class="btn primario" id="abrir" href="#">Abrir no Hybrid</a>
+  <a class="btn alt" href="https://testflight.apple.com/join/QzuquH5W">Instalar no iPhone</a>
+  <a class="btn alt" href="https://expo.dev/artifacts/eas/OJRLWbpFMdQcUGvRxaGOGSD-ls-8yZc-uXRL-QIwzP0.apk">Instalar no Android</a>
+  <p class="aviso">Instalou agora? Volta aqui e toca em "Abrir no Hybrid" — a ficha entra na tua lista.</p>
+</div>
+<script>
+// O payload vem no fragmento (#d=...), então nunca chega ao servidor.
+var bruto = location.hash.replace(/^#/, '');
+var d = /(?:^|[?&])d=([^&]+)/.exec(bruto);
+var carga = d ? d[1] : '';
+var deepLink = 'hybrid://workouts/import?d=' + carga;
+document.getElementById('abrir').href = deepLink;
+
+if (carga) {
+  try {
+    var ficha = JSON.parse(decodeURIComponent(carga));
+    if (ficha && ficha.n && Array.isArray(ficha.d)) {
+      var total = ficha.d.reduce(function (n, dia) { return n + (dia.e ? dia.e.length : 0); }, 0);
+      document.getElementById('nome').textContent = ficha.n;
+      document.getElementById('resumo').textContent =
+        ficha.d.length + (ficha.d.length === 1 ? ' treino · ' : ' treinos · ') + total + ' exercícios';
+      var box = document.getElementById('dias');
+      ficha.d.forEach(function (dia) {
+        var linha = document.createElement('div');
+        linha.className = 'dia';
+        var b = document.createElement('b'); b.textContent = dia.n || 'Treino';
+        var s = document.createElement('span');
+        var q = dia.e ? dia.e.length : 0;
+        s.textContent = q + (q === 1 ? ' exercício' : ' exercícios');
+        linha.appendChild(b); linha.appendChild(s); box.appendChild(linha);
+      });
+      box.hidden = false;
+    }
+  } catch (e) { /* link truncado: os botões continuam valendo */ }
+  // Tenta abrir o app sozinho. Sem o app instalado nada acontece e a página fica.
+  setTimeout(function () { location.href = deepLink; }, 350);
+} else {
+  document.getElementById('resumo').textContent = 'Esse link veio sem o treino. Peça pra mandarem de novo.';
+}
+</script>
+</body>
+</html>
