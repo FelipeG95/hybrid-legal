@@ -35,13 +35,19 @@
   <a class="btn alt" href="https://testflight.apple.com/join/QzuquH5W">Instalar no iPhone</a>
   <a class="btn alt" href="https://expo.dev/artifacts/eas/OJRLWbpFMdQcUGvRxaGOGSD-ls-8yZc-uXRL-QIwzP0.apk">Instalar no Android</a>
   <p class="aviso">Instalou agora? Volta aqui e toca em "Abrir no Hybrid" — a ficha entra na tua lista.</p>
+  <div id="socorro" hidden>
+    <p class="aviso" style="margin-top:22px">Não abriu? Copia o código e cola no app em <b>Treinos › Importar ficha do Hybrid</b>.</p>
+    <a class="btn alt" id="copiar" href="#">Copiar código da ficha</a>
+  </div>
 </div>
 <script>
 // O payload vem no fragmento (#d=...), então nunca chega ao servidor.
 var bruto = location.hash.replace(/^#/, '');
 var d = /(?:^|[?&])d=([^&]+)/.exec(bruto);
 var carga = d ? d[1] : '';
-var deepLink = 'hybrid://workouts/import?d=' + carga;
+// Três barras: com duas, o iPhone lê "workouts" como host, sobra só "import"
+// de caminho e o app abria na Home sem a ficha.
+var deepLink = 'hybrid:///workouts/import?d=' + carga;
 document.getElementById('abrir').href = deepLink;
 
 if (carga) {
@@ -51,7 +57,8 @@ if (carga) {
       var total = ficha.d.reduce(function (n, dia) { return n + (dia.e ? dia.e.length : 0); }, 0);
       document.getElementById('nome').textContent = ficha.n;
       document.getElementById('resumo').textContent =
-        ficha.d.length + (ficha.d.length === 1 ? ' treino · ' : ' treinos · ') + total + ' exercícios';
+        ficha.d.length + (ficha.d.length === 1 ? ' treino · ' : ' treinos · ') +
+        total + (total === 1 ? ' exercício' : ' exercícios');
       var box = document.getElementById('dias');
       ficha.d.forEach(function (dia) {
         var linha = document.createElement('div');
@@ -67,6 +74,36 @@ if (carga) {
   } catch (e) { /* link truncado: os botões continuam valendo */ }
   // Tenta abrir o app sozinho. Sem o app instalado nada acontece e a página fica.
   setTimeout(function () { location.href = deepLink; }, 350);
+
+  // Continuou aqui depois de alguns segundos? Então o app não abriu: mostra o
+  // caminho manual em vez de deixar a pessoa olhando para um botão que não faz
+  // nada. Colar o código funciona em qualquer versão do app.
+  setTimeout(function () {
+    function mostrar() { document.getElementById('socorro').hidden = false; }
+    // Se o app abriu, a página fica escondida — nesse caso o socorro só aparece
+    // se a pessoa voltar para cá, o que significa que não deu certo.
+    if (document.hidden) {
+      document.addEventListener('visibilitychange', function ao() {
+        if (document.hidden) return;
+        document.removeEventListener('visibilitychange', ao);
+        setTimeout(mostrar, 1200);
+      });
+      return;
+    }
+    mostrar();
+  }, 2500);
+
+  document.getElementById('copiar').addEventListener('click', function (evento) {
+    evento.preventDefault();
+    var botao = evento.currentTarget;
+    var texto = location.href;
+    function avisar(ok) { botao.textContent = ok ? 'Copiado! Cola no app' : 'Copia o endereço da página'; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(function () { avisar(true); }, function () { avisar(false); });
+    } else {
+      avisar(false);
+    }
+  });
 } else {
   document.getElementById('resumo').textContent = 'Esse link veio sem o treino. Peça pra mandarem de novo.';
 }
