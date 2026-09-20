@@ -1,43 +1,301 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de Privacidade — Hybrid</title>
+<meta name="description" content="Como o Hybrid: Treino &amp; CrossFit trata os seus dados.">
+<!--
+  Esta página não carrega nada de fora: sem fontes do Google, sem scripts, sem
+  análise de acesso. Uma política de privacidade que, ao ser aberta, entregasse
+  o IP de quem lê a um terceiro estaria contradizendo o próprio texto.
+-->
 <style>
-  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
-  h1 { font-size: 1.6rem; } h2 { font-size: 1.15rem; margin-top: 2rem; }
-  @media (prefers-color-scheme: dark) { body { background: #0A0E17; color: #e8e8e8; } }
+  :root {
+    --fundo: #F5F7FA;
+    --papel: #FFFFFF;
+    --tinta: #111826;
+    --tinta-2: #475269;
+    --tinta-3: #6B7690;
+    --linha: #DDE3EA;
+    --ciano: #0A6F82;
+    --ciano-fundo: #E3F1F4;
+    --verde: #2E6A4A;
+    --verde-fundo: #E6F1EA;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fundo: #070A11;
+      --papel: #111925;
+      --tinta: #EAF0F5;
+      --tinta-2: #A6B1C2;
+      --tinta-3: #7C889A;
+      --linha: #222D3B;
+      --ciano: #4FD3E6;
+      --ciano-fundo: #0E2D36;
+      --verde: #72C295;
+      --verde-fundo: #11281C;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fundo); color: var(--tinta);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 22px 96px; }
+  .marca { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--ciano); font-weight: 600; }
+  h1 { font-size: clamp(28px, 6vw, 38px); line-height: 1.15; letter-spacing: -.02em; margin: 10px 0 8px; }
+  .data { color: var(--tinta-3); font-size: 14px; margin: 0 0 32px; }
+  h2 { font-size: 21px; letter-spacing: -.01em; margin: 44px 0 12px; padding-top: 8px; border-top: 1px solid var(--linha); }
+  h3 { font-size: 16px; margin: 22px 0 6px; }
+  p, li { color: var(--tinta-2); }
+  strong { color: var(--tinta); }
+  ul { padding-left: 22px; }
+  li { margin: 5px 0; }
+  a { color: var(--ciano); }
+  .resumo {
+    background: var(--papel); border: 1px solid var(--linha); border-radius: 12px;
+    padding: 20px 22px; display: grid; gap: 10px;
+  }
+  .resumo p { margin: 0; }
+  .fica {
+    background: var(--verde-fundo); border: 1px solid color-mix(in srgb, var(--verde) 25%, transparent);
+    border-radius: 10px; padding: 16px 20px;
+  }
+  .fica strong { color: var(--verde); }
+  .tabela { overflow-x: auto; border: 1px solid var(--linha); border-radius: 10px; background: var(--papel); margin: 14px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 620px; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--linha); }
+  tr:last-child td { border-bottom: none; }
+  th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-3); }
+  td:first-child { color: var(--tinta); font-weight: 600; white-space: nowrap; }
+  td { color: var(--tinta-2); }
+  .nota { background: var(--ciano-fundo); border-radius: 10px; padding: 14px 18px; font-size: 15px; }
+  .nota p { margin: 0; }
+  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--linha); color: var(--tinta-3); font-size: 14px; }
 </style>
 </head>
 <body>
-<h1>Política de Privacidade — Hybrid: Treino &amp; CrossFit</h1>
-<p><em>Última atualização: 21 de agosto de 2026</em></p>
+<main>
 
-<h2>Resumo</h2>
-<p>O Hybrid funciona <strong>offline</strong>. Seus treinos, medidas, água, calorias e fichas ficam gravados <strong>apenas no seu aparelho</strong>. Não temos servidores com seus dados, não pedimos cadastro e não vendemos informação de ninguém.</p>
+  <div class="marca">Hybrid: Treino &amp; CrossFit</div>
+  <h1>Política de Privacidade</h1>
+  <p class="data">Última atualização: 19 de setembro de 2026</p>
 
-<h2>O que fica só no seu aparelho</h2>
-<p>Nome informado no app, idade, sexo, medidas corporais, histórico de treinos, fichas, recordes, água e calorias. Nada disso sai do telefone. Apagar o app (ou usar "Apagar tudo e recomeçar" no Perfil) elimina esses dados definitivamente.</p>
+  <div class="resumo">
+    <p><strong>Em resumo.</strong> O Hybrid não tem conta nem login, e seus treinos, medidas e fotos ficam no seu aparelho.</p>
+    <p>Alguns dados saem dele para serviços que fazem o app funcionar — e nenhum desses envios leva seu nome, e-mail ou qualquer identificador que diga quem você é. Esta página lista cada um.</p>
+    <p>Não vendemos seus dados, não mostramos anúncios e não usamos seus dados para rastrear você em outros apps.</p>
+  </div>
 
-<h2>O que pode sair do aparelho</h2>
-<ul>
-<li><strong>Relatórios de erro (Sentry):</strong> se o app travar, enviamos um relatório técnico anônimo (modelo do aparelho, versão do sistema, ponto do código do erro). Não contém seu nome, e-mail nem seus dados de treino.</li>
-<li><strong>Compras (Apple/Google + RevenueCat):</strong> assinaturas são processadas pela App Store/Google Play. O RevenueCat, nosso processador de assinaturas, recebe um identificador anônimo e o recibo da loja — nunca seus dados de treino ou pagamento (cartões ficam com a Apple/Google).</li>
-<li><strong>Geração de treino com IA:</strong> ao montar uma ficha, parâmetros de treino (objetivo, nível, equipamento — sem nome ou identificadores) podem ser enviados ao nosso serviço de geração. Sem conexão, o app gera a ficha localmente.</li>
-<li><strong>Compartilhamento:</strong> quando você compartilha uma ficha ou card, o conteúdo vai pelo aplicativo que você escolher (WhatsApp etc.) — sob controle seu.</li>
-</ul>
+  <h2>1. Quem é responsável pelos seus dados</h2>
+  <p>
+    O controlador dos dados, nos termos da Lei Geral de Proteção de Dados (Lei nº 13.709/2018, "LGPD"),
+    é <strong>Felipe Almeida</strong>, desenvolvedor do Hybrid.
+  </p>
+  <p>Para qualquer assunto sobre privacidade, escreva para <strong><a href="mailto:use_hybrid@outlook.com">use_hybrid@outlook.com</a></strong>.</p>
 
-<h2>O que NÃO fazemos</h2>
-<p>Sem anúncios, sem rastreadores de publicidade, sem venda de dados, sem coleta de localização, contatos, fotos ou microfone.</p>
+  <h2>2. O que fica só no seu aparelho</h2>
+  <div class="fica">
+    <p style="margin:0">
+      <strong>Nunca sai do seu celular:</strong> seu nome, foto de perfil e gênero; peso e medidas
+      corporais; fotos de progresso; o histórico completo de treinos; e os registros de água e
+      alimentação. Esses dados ficam guardados localmente, no armazenamento do app.
+    </p>
+  </div>
+  <p>
+    Como ficam no aparelho, eles entram no backup do próprio celular, se esse backup estiver ativado: o do
+    iCloud, no iPhone, ou o do Google, no Android. Esse backup é feito pela Apple ou pelo Google, na sua conta,
+    e nós não temos acesso a ele.
+  </p>
+  <p>
+    No Android, as <strong>fotos de progresso ficam fora do backup do Google</strong>. Esse backup tem um limite de
+    tamanho por app e, se ele for ultrapassado, nada é salvo. Tirar as fotos garante que seus treinos continuem
+    protegidos. Na transferência direta de um celular para outro, as fotos vão junto.
+  </p>
 
-<h2>Crianças</h2>
-<p>O Hybrid não é direcionado a menores de 13 anos.</p>
+  <h2>3. O que sai do aparelho, para quem e por quê</h2>
+  <div class="tabela">
+    <table>
+      <thead>
+        <tr><th>Serviço</th><th>O que recebe</th><th>Para quê</th><th>Onde</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PostHog</td>
+          <td>Eventos de uso: abrir o app, criar uma ficha, começar e concluir um treino ou WOD. Junto vão só números e rótulos curtos (duração, quantidade de séries, se foi RX) e um identificador <strong>sorteado no aparelho</strong>, sem relação com você.</td>
+          <td>Entender se as pessoas voltam a usar o app e onde o uso se interrompe.</td>
+          <td>Estados Unidos</td>
+        </tr>
+        <tr>
+          <td>Sentry</td>
+          <td>Relatórios de erro: onde o app falhou, versão do app e modelo do aparelho. O envio de dados pessoais está desligado. Junto vai um <strong>sinal de sessão a cada abertura</strong> do app — sem conteúdo nenhum, só serve para calcular a proporção de aberturas que terminam sem falha.</td>
+          <td>Encontrar e corrigir falhas, e perceber quando uma versão sai pior que a anterior.</td>
+          <td>Alemanha (União Europeia)</td>
+        </tr>
+        <tr>
+          <td>Expo</td>
+          <td>A cada abertura, o app pergunta se existe atualização. Nessa consulta vão a plataforma (iPhone ou Android) e a versão do app, mais o endereço IP que qualquer conexão revela. Nenhum dado seu vai junto.</td>
+          <td>Entregar correções sem esperar uma versão nova na loja.</td>
+          <td>Estados Unidos</td>
+        </tr>
+        <tr>
+          <td>GitHub</td>
+          <td>Só quando falta no seu aparelho a imagem de um exercício que desenhamos depois da sua versão do app: o pedido dessa imagem, com o endereço IP que qualquer conexão revela. Se a imagem já veio no app, nada é pedido.</td>
+          <td>Mostrar a demonstração do exercício antes de sair a versão que traz a imagem.</td>
+          <td>Estados Unidos</td>
+        </tr>
+        <tr>
+          <td>Anthropic, via Cloudflare</td>
+          <td>Só quando você usa o Atlas com IA: a pergunta que você escreveu, as últimas mensagens da conversa e um resumo dos seus treinos (sequência, treinos na semana, água do dia e até 20 séries recentes com exercício, carga, repetições e esforço). Na leitura de ficha, a foto ou o texto que você enviar. Nenhum identificador vai junto.</td>
+          <td>Gerar a resposta do Atlas e ler a ficha que você enviou.</td>
+          <td>Estados Unidos</td>
+        </tr>
+        <tr>
+          <td>RevenueCat</td>
+          <td>Um identificador anônimo gerado pelo próprio RevenueCat e o histórico da sua assinatura (plano, datas, se está ativa).</td>
+          <td>Saber se você assina o Hybrid Pro e liberar o acesso.</td>
+          <td>Estados Unidos</td>
+        </tr>
+        <tr>
+          <td>Apple ou Google</td>
+          <td>O pagamento da assinatura. Ele é feito inteiramente pela App Store, no iPhone, ou pelo Google Play, no Android.</td>
+          <td>Cobrar a assinatura.</td>
+          <td>Conforme a Apple ou o Google</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<h2>Seus direitos (LGPD)</h2>
-<p>Como os dados ficam no seu aparelho, você exerce acesso, correção e exclusão diretamente no app. Para dúvidas sobre esta política ou sobre os relatórios técnicos: <strong>use_hybrid@outlook.com</strong>.</p>
+  <div class="nota">
+    <p>
+      <strong>Sobre fotos de ficha.</strong> Ao pedir para o Atlas ler a foto de uma ficha, a imagem inteira é
+      enviada. Se a ficha tiver seu nome ou outras informações pessoais, elas vão junto. Se preferir,
+      enquadre só os exercícios, ou cole o treino como texto.
+    </p>
+  </div>
 
-<h2>Alterações</h2>
-<p>Se esta política mudar, a nova versão será publicada nesta mesma página, com a data atualizada.</p>
+  <div class="nota">
+    <p>
+      <strong>Sobre o endereço IP.</strong> Toda conexão à internet revela o IP de quem a faz — não existe pedir
+      um arquivo a um servidor sem isso. Nos eventos de uso, o <strong>descarte de IP está ligado no PostHog</strong>:
+      eles são gravados sem ele. Nos demais serviços da tabela, o IP é visto no momento da conexão e tratado
+      conforme a política de cada um. Nós mesmos não guardamos IP em lugar nenhum, porque não temos servidor próprio.
+    </p>
+  </div>
+
+  <p>Nós <strong>nunca</strong> recebemos os dados do seu cartão: o pagamento é feito diretamente com a Apple ou com o Google.</p>
+
+  <h3>O que não coletamos</h3>
+  <ul>
+    <li>Sua localização</li>
+    <li>Seus contatos</li>
+    <li>Identificador de publicidade (o IDFA do iPhone ou o ID de publicidade do Android)</li>
+    <li>Seu histórico de navegação ou de outros apps</li>
+    <li>Nenhum dado lido do app Saúde da Apple</li>
+  </ul>
+
+  <h3>Apple Saúde</h3>
+  <p>
+    Disponível só no iPhone. Se você ativar em <strong>Perfil → Apple Saúde</strong>, o Hybrid <strong>grava</strong> no app Saúde os
+    treinos que você conclui e a água que você registra, para eles aparecerem junto com o resto da sua atividade.
+  </p>
+  <p>
+    O Hybrid <strong>não lê nada</strong> do app Saúde. As gravações ficam no seu iPhone, sob controle do próprio
+    app Saúde, e não passam por nós nem por nenhum dos serviços da tabela acima. Você pode desligar a qualquer
+    momento no Perfil, ou revogar a permissão do Hybrid nas configurações de privacidade do iPhone, na parte do app Saúde.
+  </p>
+
+  <h2>4. Por que podemos tratar esses dados</h2>
+  <p>Cada uso se apoia numa base prevista na LGPD:</p>
+  <ul>
+    <li><strong>Relatórios de erro, eventos de uso e consulta de atualizações</strong> — legítimo interesse (art. 7º, IX): manter o app funcionando e melhorá-lo. Os eventos de uso podem ser desligados a qualquer momento, como explicado na seção 7.</li>
+    <li><strong>Atlas com IA e leitura de ficha</strong> — consentimento (art. 7º, I): esses envios só acontecem quando você mesmo aciona o recurso.</li>
+    <li><strong>Assinatura</strong> — execução de contrato (art. 7º, V): é o necessário para entregar o que você comprou.</li>
+  </ul>
+
+  <h2>5. Dados de saúde</h2>
+  <p>
+    A LGPD trata dados de saúde como sensíveis. Cargas, repetições e hidratação podem ser entendidos assim.
+    Por isso, o único envio que inclui esse tipo de informação — o resumo de treinos mandado ao Atlas — acontece
+    apenas quando você escolhe usar o Atlas com IA (art. 11, I). Seu histórico completo, peso e medidas continuam
+    no aparelho e não são enviados.
+  </p>
+
+  <h2>6. Transferência para outros países</h2>
+  <p>
+    Parte dos serviços listados na seção 3 fica fora do Brasil, nos Estados Unidos e na União Europeia. A
+    transferência internacional é feita nos termos do art. 33 da LGPD, com fornecedores que mantêm suas próprias
+    políticas e compromissos de proteção de dados:
+    <a href="https://posthog.com/privacy">PostHog</a>,
+    <a href="https://sentry.io/privacy/">Sentry</a>,
+    <a href="https://expo.dev/privacy">Expo</a>,
+    <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>,
+    <a href="https://www.anthropic.com/legal/privacy">Anthropic</a>,
+    <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>,
+    <a href="https://www.revenuecat.com/privacy">RevenueCat</a>,
+    <a href="https://www.apple.com/legal/privacy/">Apple</a> e
+    <a href="https://policies.google.com/privacy">Google</a>.
+  </p>
+
+  <h2>7. Seus direitos, e como exercê-los</h2>
+  <p>A LGPD garante a você, entre outros direitos (art. 18):</p>
+  <ul>
+    <li>saber se tratamos seus dados, e quais;</li>
+    <li>corrigir dados incompletos ou errados;</li>
+    <li>pedir a exclusão;</li>
+    <li>levar seus dados para outro serviço;</li>
+    <li>revogar o consentimento.</li>
+  </ul>
+
+  <h3>Direto no app</h3>
+  <ul>
+    <li><strong>Desligar os eventos de uso:</strong> Perfil → Dados de uso. A partir daí nada mais é enviado ao PostHog, e os eventos que ainda estavam no aparelho são apagados.</li>
+    <li><strong>Levar seus dados:</strong> Perfil → Backup gera um arquivo com seu histórico, que você guarda onde quiser.</li>
+    <li><strong>Apagar seus dados:</strong> Perfil → apagar todos os dados remove do aparelho seu perfil, histórico de treinos, fichas, medidas e configurações. As <strong>fotos de progresso são apagadas separadamente</strong>, na própria tela de fotos. Remover o app apaga tudo de uma vez, fotos inclusive.</li>
+    <li><strong>Não enviar nada à IA:</strong> basta não usar o Atlas com IA nem a leitura de ficha. O resto do app funciona sem esses envios.</li>
+  </ul>
+
+  <h3>Por e-mail</h3>
+  <p>
+    Para os demais pedidos, escreva para <strong>use_hybrid@outlook.com</strong>. Como os envios da seção 3 não
+    carregam identificação sua, pode ser preciso você nos ajudar a localizar os registros. Você também pode
+    procurar a Autoridade Nacional de Proteção de Dados (ANPD).
+  </p>
+
+  <h2>8. Por quanto tempo guardamos</h2>
+  <p>
+    Os dados do aparelho ficam até você apagá-los ou remover o app. Os dados enviados aos serviços da seção 3 são
+    mantidos pelo período definido por cada um deles, conforme as políticas indicadas na seção 6, e usados apenas
+    para as finalidades descritas aqui.
+  </p>
+
+  <h2>9. Crianças e adolescentes</h2>
+  <p>
+    O Hybrid é um app de treino físico e não é destinado a crianças. Não coletamos dados de crianças de forma
+    intencional. Se você é responsável por uma criança que usou o app e quer que algo seja removido, fale conosco
+    pelo e-mail acima.
+  </p>
+
+  <h2>10. Segurança</h2>
+  <p>
+    Os envios da seção 3 são feitos por conexão criptografada. O app contém apenas chaves públicas, feitas para
+    serem distribuídas dentro de aplicativos. As chaves secretas — como a que dá acesso à IA — ficam em servidores e
+    nunca são embutidas no app. Nenhum método é infalível, mas limitamos o que sai do aparelho ao mínimo necessário
+    para cada recurso funcionar.
+  </p>
+
+  <h2>11. Mudanças nesta política</h2>
+  <p>
+    Se mudarmos o que coletamos — por exemplo, se o app passar a ter conta ou backup na nuvem —, esta página será
+    atualizada antes, e a data no topo vai mudar. Mudanças relevantes serão avisadas no próprio app.
+  </p>
+
+  <footer>
+    Hybrid: Treino &amp; CrossFit · Felipe Almeida · use_hybrid@outlook.com
+  </footer>
+
+</main>
 </body>
 </html>
